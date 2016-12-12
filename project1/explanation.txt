@@ -1,0 +1,35 @@
+------------ python ------------
+* python is standaard geinstalleerd op de pi.
+* python script uitvoeren: in terminal: "python file1.py"
+* python postgresql link: psycopg2 (sudo apt-get install python-psycopg2
+* in het python script: 
+   import psycopg2
+   conn = psycopg2.connect("dbname=logins user=postgres password=postgres");
+   cur = conn.cursor();
+   cur.execute("SELECT * FROM logins");
+   cur.fetchone();
+   conn.commit();
+   cur.close();
+   conn.close();
+
+
+------------ postgresql -----------
+* psql installeren: 
+   sudo apt-get update
+   sudo apt-get install postgresql9.4
+* inloggen: twee stappen:
+   password maken voor postgres user: 
+      sudo -u postgres plsql postgres (dit opent psql)
+      \password postgres (postgres is het password voor de postgres user) 
+      \q (sluit psql)
+   local connecties openzetten:
+      scroll naar de regel met "local    all     all     peer"
+      pas dit aan naar: "local    all    all    md5"
+   restart postgresql
+      sudo service postgresql restart
+* inloggen in een database: psql postgres DATABASENAME
+   opties: 
+      -h host
+      -p port
+* goede site: wiki.postgresql.org/wiki/First_steps
+
